@@ -35,6 +35,7 @@ const html = md.render('# Hello\n\n```GPT-Vis\nvis line\ndata ...\n```');
 | `width`        | `number`                                      | `undefined` | Default chart width (px)                         |
 | `height`       | `number`                                      | `undefined` | Default chart height (px)                        |
 | `theme`        | `'default' \| 'light' \| 'dark' \| 'academy'` | `'default'` | Default chart theme                              |
+| `wrapper`      | `boolean`                                     | `false`     | Enable the wrapper container                     |
 
 ```ts
 md.use(gptVisMarkdownItPlugin, {
@@ -43,6 +44,7 @@ md.use(gptVisMarkdownItPlugin, {
   theme: 'dark',
   width: 800,
   height: 400,
+  wrapper: true,
 });
 ```
 

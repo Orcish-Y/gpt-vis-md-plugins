@@ -42,11 +42,13 @@ console.log(String(html));
 | `width`        | `number`                                      | `undefined` | 默认图表宽度（px）         |
 | `height`       | `number`                                      | `undefined` | 默认图表高度（px）         |
 | `theme`        | `'default' \| 'light' \| 'dark' \| 'academy'` | `'default'` | 默认图表主题               |
+| `wrapper`      | `boolean`                                     | `false`     | 是否开启容器包裹           |
 
 ```ts
 .use(rehypeGPTVis, {
   tagName: 'vis-chart',
   keepOriginal: true,
+  wrapper: true,
   theme: 'dark',
   width: 800,
   height: 400,

@@ -12,6 +12,12 @@ export interface MarkedGPTVisOptions {
    * @default false
    */
   keepOriginal?: boolean;
+
+  /**
+   * Whether to enable the wrapper container.
+   * @default false
+   */
+  wrapper?: boolean;
 }
 
 function escapeHtml(str: string): string {
@@ -27,7 +33,7 @@ export function isVisSyntax(text: string): boolean {
 }
 
 export function markedGPTVis(options: MarkedGPTVisOptions = {}): MarkedExtension {
-  const { tagName = 'gpt-vis', keepOriginal = false } = options;
+  const { tagName = 'gpt-vis', keepOriginal = false, wrapper } = options;
 
   return {
     renderer: {
@@ -42,7 +48,8 @@ export function markedGPTVis(options: MarkedGPTVisOptions = {}): MarkedExtension
         }
 
         const escaped = escapeHtml(syntax);
-        const visHtml = `<${tagName} data-gpt-vis="${escaped}"></${tagName}>`;
+        const wrapperAttr = wrapper ? ' data-wrapper="true"' : '';
+        const visHtml = `<${tagName} data-gpt-vis="${escaped}"${wrapperAttr}></${tagName}>`;
 
         if (keepOriginal) {
           const originalHtml = `<pre><code class="language-${escapeHtml(lang)}">${escapeHtml(text)}</code></pre>`;

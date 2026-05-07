@@ -12,6 +12,12 @@ export interface MarkdownItGPTVisOptions {
    * @default false
    */
   keepOriginal?: boolean;
+
+  /**
+   * Whether to enable the wrapper container.
+   * @default false
+   */
+  wrapper?: boolean;
 }
 
 export function isVisSyntax(text: string): boolean {
@@ -22,7 +28,7 @@ export function gptVisMarkdownItPlugin(
   md: MarkdownIt,
   options: MarkdownItGPTVisOptions = {},
 ): void {
-  const { tagName = 'gpt-vis', keepOriginal = false } = options;
+  const { tagName = 'gpt-vis', keepOriginal = false, wrapper } = options;
 
   const defaultFence = md.renderer.rules.fence!;
 
@@ -40,7 +46,8 @@ export function gptVisMarkdownItPlugin(
     }
 
     const attr = md.utils.escapeHtml(syntax);
-    const visHtml = `<${tagName} data-gpt-vis="${attr}"></${tagName}>`;
+    const wrapperAttr = wrapper ? ' data-wrapper="true"' : '';
+    const visHtml = `<${tagName} data-gpt-vis="${attr}"${wrapperAttr}></${tagName}>`;
 
     if (keepOriginal) {
       const originalHtml = defaultFence(tokens, idx, mdOptions, env, self);

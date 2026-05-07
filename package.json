@@ -22,7 +22,7 @@
       "prettier --write --ignore-unknown"
     ],
     "*.ts": [
-      "pnpm typecheck"
+      "bash -c 'pnpm typecheck'"
     ]
   },
   "engines": {

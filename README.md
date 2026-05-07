@@ -127,6 +127,7 @@ Each plugin supports the following options:
 | `width`        | `number`                                      | `undefined` | Default chart width (px)                         |
 | `height`       | `number`                                      | `undefined` | Default chart height (px)                        |
 | `theme`        | `'default' \| 'light' \| 'dark' \| 'academy'` | `'default'` | Default chart theme                              |
+| `wrapper`      | `boolean`                                     | `false`     | Enable the wrapper container                     |
 
 Example:
 
@@ -135,6 +136,7 @@ Example:
 md.use(gptVisMarkdownItPlugin, {
   tagName: 'vis-chart',
   keepOriginal: true,
+  wrapper: true,
   theme: 'dark',
   width: 800,
   height: 400,

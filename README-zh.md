@@ -127,6 +127,7 @@ const html = await marked.parse('# Hello\n\n\`\`\`GPT-Vis\nvis line\ndata ...\n\
 | `width`        | `number`                                      | `undefined` | 图表默认宽度（px）             |
 | `height`       | `number`                                      | `undefined` | 图表默认高度（px）             |
 | `theme`        | `'default' \| 'light' \| 'dark' \| 'academy'` | `'default'` | 图表默认主题                   |
+| `wrapper`      | `boolean`                                     | `false`     | 是否开启容器包裹               |
 
 使用示例：
 
@@ -135,6 +136,7 @@ const html = await marked.parse('# Hello\n\n\`\`\`GPT-Vis\nvis line\ndata ...\n\
 md.use(gptVisMarkdownItPlugin, {
   tagName: 'vis-chart',
   keepOriginal: true,
+  wrapper: true,
   theme: 'dark',
   width: 800,
   height: 400,

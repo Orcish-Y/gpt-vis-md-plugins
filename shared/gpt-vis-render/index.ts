@@ -5,6 +5,7 @@ export interface GPTVisDefaultOptions {
   width?: number;
   height?: number;
   theme?: 'default' | 'light' | 'dark' | 'academy';
+  wrapper?: boolean;
 }
 
 let defaultOptions: GPTVisDefaultOptions = {};
@@ -24,12 +25,15 @@ class GPTVisElement extends HTMLElement {
       | 'dark'
       | 'academy'
       | undefined;
+    const wrapper =
+      this.dataset.wrapper !== undefined ? this.dataset.wrapper === 'true' : defaultOptions.wrapper;
 
     this._instance = new GPTVis({
       container: this,
       width,
       height,
       theme,
+      wrapper,
     });
 
     if (isVisSyntax(syntax)) {
@@ -43,7 +47,7 @@ class GPTVisElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['data-gpt-vis', 'data-width', 'data-height', 'data-theme'];
+    return ['data-gpt-vis', 'data-width', 'data-height', 'data-theme', 'data-wrapper'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {

@@ -3,7 +3,7 @@ import { markedGPTVis } from 'gpt-vis-marked';
 import type { EcosystemAdapter } from './types';
 
 const marked = new Marked({ gfm: true });
-marked.use(markedGPTVis());
+marked.use(markedGPTVis({ wrapper: true }));
 
 export const markedAdapter: EcosystemAdapter = {
   id: 'marked',

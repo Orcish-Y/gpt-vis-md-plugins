@@ -42,11 +42,13 @@ console.log(String(html));
 | `width`        | `number`                                      | `undefined` | Default chart width (px)                         |
 | `height`       | `number`                                      | `undefined` | Default chart height (px)                        |
 | `theme`        | `'default' \| 'light' \| 'dark' \| 'academy'` | `'default'` | Default chart theme                              |
+| `wrapper`      | `boolean`                                     | `false`     | Enable the wrapper container                     |
 
 ```ts
 .use(rehypeGPTVis, {
   tagName: 'vis-chart',
   keepOriginal: true,
+  wrapper: true,
   theme: 'dark',
   width: 800,
   height: 400,

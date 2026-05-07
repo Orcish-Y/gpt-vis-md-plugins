@@ -8,7 +8,7 @@ import type { EcosystemAdapter } from './types';
 const pipeline = unified()
   .use(remarkParse)
   .use(remarkRehype)
-  .use(rehypeGPTVis)
+  .use(rehypeGPTVis, { wrapper: true })
   .use(rehypeStringify);
 
 export const rehypeAdapter: EcosystemAdapter = {
