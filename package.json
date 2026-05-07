@@ -6,10 +6,24 @@
   "scripts": {
     "dev": "pnpm -r --parallel dev",
     "build": "pnpm -r --filter './packages/*' build",
-    "typecheck": "pnpm -r --parallel typecheck"
+    "typecheck": "pnpm -r --parallel typecheck",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.3",
+    "@commitlint/config-conventional": "^20.5.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.2",
+    "prettier": "^3.8.3",
     "typescript": "^5.5.0"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.ts": [
+      "pnpm typecheck"
+    ]
   },
   "engines": {
     "node": ">=20",

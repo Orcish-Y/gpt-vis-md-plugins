@@ -1,15 +1,13 @@
 {
-  "name": "gpt-vis-rehype",
+  "name": "gpt-vis-markdown-it",
   "version": "0.0.1",
-  "description": "A rehype plugin to transform GPT-Vis syntax into visualizations",
+  "description": "A markdown-it plugin to transform GPT-Vis syntax into visualizations",
   "keywords": [
-    "rehype",
-    "unified",
+    "markdown-it",
     "plugin",
     "gpt-vis",
     "antv",
     "visualization",
-    "hast",
     "markdown",
     "LLM"
   ],
@@ -17,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/antvis/gpt-vis-md-plugins",
-    "directory": "packages/rehype"
+    "directory": "packages/markdown-it"
   },
   "license": "MIT",
   "author": "antvis",
@@ -40,16 +38,14 @@
     "build": "vite build",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "unist-util-visit": "^5.0.0"
-  },
   "peerDependencies": {
     "@antv/gpt-vis": "^1.0.0",
-    "unified": "^11.0.0"
+    "markdown-it": "^14.0.0"
   },
   "devDependencies": {
     "@antv/gpt-vis": "^1.0.0",
-    "@types/hast": "^3.0.0",
+    "@types/markdown-it": "^14.0.0",
+    "markdown-it": "^14.0.0",
     "typescript": "^5.5.0",
     "vite": "^5.4.0",
     "vite-plugin-dts": "^4.2.0"

@@ -1,10 +1,10 @@
 // @ts-ignore
-import { GPTVis, isVisSyntax } from "@antv/gpt-vis";
+import { GPTVis, isVisSyntax } from '@antv/gpt-vis';
 
 export interface GPTVisDefaultOptions {
   width?: number;
   height?: number;
-  theme?: "default" | "light" | "dark" | "academy";
+  theme?: 'default' | 'light' | 'dark' | 'academy';
 }
 
 let defaultOptions: GPTVisDefaultOptions = {};
@@ -16,17 +16,13 @@ class GPTVisElement extends HTMLElement {
     const syntax = this.dataset.gptVis;
     if (!syntax) return;
 
-    const width = this.dataset.width
-      ? Number(this.dataset.width)
-      : defaultOptions.width;
-    const height = this.dataset.height
-      ? Number(this.dataset.height)
-      : defaultOptions.height;
+    const width = this.dataset.width ? Number(this.dataset.width) : defaultOptions.width;
+    const height = this.dataset.height ? Number(this.dataset.height) : defaultOptions.height;
     const theme = (this.dataset.theme || defaultOptions.theme) as
-      | "default"
-      | "light"
-      | "dark"
-      | "academy"
+      | 'default'
+      | 'light'
+      | 'dark'
+      | 'academy'
       | undefined;
 
     this._instance = new GPTVis({
@@ -47,12 +43,12 @@ class GPTVisElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["data-gpt-vis", "data-width", "data-height", "data-theme"];
+    return ['data-gpt-vis', 'data-width', 'data-height', 'data-theme'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
-    if (name === "data-gpt-vis" && this._instance && isVisSyntax(newValue)) {
+    if (name === 'data-gpt-vis' && this._instance && isVisSyntax(newValue)) {
       this._instance.render(newValue);
     }
   }
@@ -60,7 +56,7 @@ class GPTVisElement extends HTMLElement {
 
 export function registerGPTVisElement(options: GPTVisDefaultOptions = {}) {
   defaultOptions = options;
-  if (!customElements.get("gpt-vis")) {
-    customElements.define("gpt-vis", GPTVisElement);
+  if (!customElements.get('gpt-vis')) {
+    customElements.define('gpt-vis', GPTVisElement);
   }
 }

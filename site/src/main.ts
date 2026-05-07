@@ -1,14 +1,16 @@
-import { registerGPTVisElement } from '@antv/gpt-vis-rehype';
+import { registerGPTVisElement } from 'gpt-vis-rehype';
 import { defaultMarkdown } from './default-markdown';
 import { ecosystemRegistry } from './ecosystems/registry';
 import { rehypeAdapter } from './ecosystems/rehype';
+import { markdownItAdapter } from './ecosystems/markdown-it';
+import { markedAdapter } from './ecosystems/marked';
 import type { EcosystemAdapter } from './ecosystems/types';
 
 registerGPTVisElement();
 
 ecosystemRegistry.register(rehypeAdapter);
-ecosystemRegistry.reserve('markdown-it', 'markdown-it', 'markdown-it + gpt-vis plugin');
-ecosystemRegistry.reserve('marked', 'Marked', 'marked + gpt-vis extension');
+ecosystemRegistry.register(markdownItAdapter);
+ecosystemRegistry.register(markedAdapter);
 
 let currentEcosystem: EcosystemAdapter = ecosystemRegistry.getDefault();
 

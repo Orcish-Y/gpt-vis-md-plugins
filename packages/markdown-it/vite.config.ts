@@ -16,7 +16,7 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['@antv/gpt-vis', /^unified/, /^unist-/, /^hast-/, /^rehype/],
+      external: ['@antv/gpt-vis', /^markdown-it/],
     },
     target: 'esnext',
   },

@@ -31,33 +31,23 @@ export function isVisSyntax(text: string): boolean {
 }
 
 export const rehypeGPTVis: Plugin<[RehypeGPTVisOptions?], Root> = (options = {}) => {
-  const {
-    tagName = 'gpt-vis',
-    keepOriginal = false,
-  } = options;
+  const { tagName = 'gpt-vis', keepOriginal = false } = options;
 
   return (tree) => {
     visit(tree, 'element', (node, index, parent) => {
-      if (
-        node.tagName !== 'pre' ||
-        index === undefined ||
-        !parent
-      ) {
+      if (node.tagName !== 'pre' || index === undefined || !parent) {
         return;
       }
 
       const codeEl = node.children.find(
-        (child): child is Element =>
-          child.type === 'element' && child.tagName === 'code',
+        (child): child is Element => child.type === 'element' && child.tagName === 'code',
       );
 
       if (!codeEl) return;
 
       const className = codeEl.properties?.className;
       const classList = Array.isArray(className) ? className : [className];
-      const isGPTVisBlock = classList.some((c) =>
-        String(c).toLowerCase() === 'language-gpt-vis',
-      );
+      const isGPTVisBlock = classList.some((c) => String(c).toLowerCase() === 'language-gpt-vis');
 
       if (!isGPTVisBlock) return;
 
