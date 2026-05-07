@@ -1,5 +1,5 @@
 {
-  "name": "@antv/gpt-vis-markdown-it",
+  "name": "gpt-vis-markdown-it",
   "version": "0.0.1",
   "description": "A markdown-it plugin to transform GPT-Vis syntax into visualizations",
   "keywords": [

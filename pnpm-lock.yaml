@@ -81,13 +81,13 @@ importers:
       '@antv/gpt-vis':
         specifier: ^1.0.0
         version: 1.0.0
-      '@antv/gpt-vis-markdown-it':
+      gpt-vis-markdown-it:
         specifier: workspace:*
         version: link:../packages/markdown-it
-      '@antv/gpt-vis-marked':
+      gpt-vis-marked:
         specifier: workspace:*
         version: link:../packages/marked
-      '@antv/gpt-vis-rehype':
+      gpt-vis-rehype:
         specifier: workspace:*
         version: link:../packages/rehype
       markdown-it:

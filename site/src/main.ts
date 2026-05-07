@@ -1,4 +1,4 @@
-import { registerGPTVisElement } from '@antv/gpt-vis-rehype';
+import { registerGPTVisElement } from 'gpt-vis-rehype';
 import { defaultMarkdown } from './default-markdown';
 import { ecosystemRegistry } from './ecosystems/registry';
 import { rehypeAdapter } from './ecosystems/rehype';

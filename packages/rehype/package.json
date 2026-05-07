@@ -1,5 +1,5 @@
 {
-  "name": "@antv/gpt-vis-rehype",
+  "name": "gpt-vis-rehype",
   "version": "0.0.1",
   "description": "A rehype plugin to transform GPT-Vis syntax into visualizations",
   "keywords": [
