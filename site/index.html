@@ -13,8 +13,7 @@
       html,
       body {
         height: 100%;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
       header {
         padding: 12px 20px;
@@ -22,6 +21,19 @@
         color: #fff;
         font-size: 16px;
         font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      header a {
+        color: #aab;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      header a:hover {
+        color: #fff;
       }
       #app {
         display: flex;
@@ -88,7 +100,7 @@
         border: none;
         outline: none;
         resize: none;
-        font-family: "SF Mono", "Menlo", "Consolas", monospace;
+        font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
         font-size: 14px;
         line-height: 1.6;
         tab-size: 2;
@@ -121,7 +133,11 @@
     </style>
   </head>
   <body>
-    <header>GPT-Vis Markdown Plugins Demo</header>
+    <header>
+      GPT-Vis Markdown Plugins
+      <a href="/">Demo</a>
+      <a href="/doc.html">Docs</a>
+    </header>
     <main id="app">
       <section id="editor-pane">
         <div class="pane-header">Markdown</div>
