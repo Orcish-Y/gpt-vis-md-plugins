@@ -1,0 +1,59 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG="${{ github.ref_name }}"
+          VERSION="${TAG#v}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Sync package versions
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          for dir in packages/markdown-it packages/marked packages/rehype; do
+            node -e "
+              const pj = require('./$dir/package.json');
+              pj.version = '$VERSION';
+              require('fs').writeFileSync('./$dir/package.json', JSON.stringify(pj, null, 2) + '\n');
+            "
+          done
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - name: Publish to npm
+        run: pnpm publish -r --filter './packages/*' --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "${{ steps.version.outputs.tag }}" \
+            --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

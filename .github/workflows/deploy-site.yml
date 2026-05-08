@@ -1,0 +1,37 @@
+name: Deploy Site
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build packages (site depends on them)
+        run: pnpm build
+
+      - name: Build site
+        run: pnpm --filter site build
+
+      # TODO: 部署步骤 — 待站点就绪后填充
+      # 例如部署到 GitHub Pages:
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./site/dist
+      #
+      # 或部署到自有服务器:
+      # - name: Deploy via rsync
+      #   run: rsync -avz ./site/dist/ user@host:/var/www/site/
