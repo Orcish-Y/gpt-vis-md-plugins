@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@antv/gpt-vis": "^1.0.0",
-    "gpt-vis-markdown-it": "workspace:*",
-    "gpt-vis-marked": "workspace:*",
-    "gpt-vis-rehype": "workspace:*",
+    "@gpt-vis-plugin/markdown-it": "workspace:*",
+    "@gpt-vis-plugin/marked": "workspace:*",
+    "@gpt-vis-plugin/rehype": "workspace:*",
     "marked": "^15.0.0",
     "markdown-it": "^14.0.0",
     "rehype-stringify": "^10.0.1",

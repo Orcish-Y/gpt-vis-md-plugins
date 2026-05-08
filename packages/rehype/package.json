@@ -1,5 +1,5 @@
 {
-  "name": "gpt-vis-rehype",
+  "name": "@gpt-vis-plugin/rehype",
   "version": "0.0.1",
   "description": "A rehype plugin to transform GPT-Vis syntax into visualizations",
   "keywords": [
@@ -16,7 +16,7 @@
   "homepage": "https://gpt-vis.antv.vision",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antvis/gpt-vis-md-plugins",
+    "url": "https://github.com/antvis/gpt-vis-plugins",
     "directory": "packages/rehype"
   },
   "license": "MIT",

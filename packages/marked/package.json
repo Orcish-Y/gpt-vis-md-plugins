@@ -1,5 +1,5 @@
 {
-  "name": "gpt-vis-marked",
+  "name": "@gpt-vis-plugin/marked",
   "version": "0.0.1",
   "description": "A Marked extension to transform GPT-Vis syntax into visualizations",
   "keywords": [
@@ -14,7 +14,7 @@
   "homepage": "https://gpt-vis.antv.vision",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antvis/gpt-vis-md-plugins",
+    "url": "https://github.com/antvis/gpt-vis-plugins",
     "directory": "packages/marked"
   },
   "license": "MIT",

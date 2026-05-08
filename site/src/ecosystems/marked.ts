@@ -1,5 +1,5 @@
 import { Marked } from 'marked';
-import { markedGPTVis } from 'gpt-vis-marked';
+import { markedGPTVis } from '@gpt-vis-plugin/marked';
 import type { EcosystemAdapter } from './types';
 
 const marked = new Marked({ gfm: true });

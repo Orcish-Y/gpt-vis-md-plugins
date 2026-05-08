@@ -1,13 +1,13 @@
-# gpt-vis-marked
+# @gpt-vis-plugin/marked
 
 > A Marked extension that transforms `GPT-Vis` code blocks into `<gpt-vis>` Web Components.
 
-[![npm](https://img.shields.io/npm/v/gpt-vis-marked)](https://www.npmjs.com/package/gpt-vis-marked)
+[![npm](https://img.shields.io/npm/v/@gpt-vis-plugin/marked)](https://www.npmjs.com/package/@gpt-vis-plugin/marked)
 
 ## Installation
 
 ```bash
-pnpm add gpt-vis-marked @antv/gpt-vis marked
+pnpm add @gpt-vis-plugin/marked @antv/gpt-vis marked
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ pnpm add gpt-vis-marked @antv/gpt-vis marked
 
 ````ts
 import { Marked } from 'marked';
-import { markedGPTVis, registerGPTVisElement } from 'gpt-vis-marked';
+import { markedGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/marked';
 
 registerGPTVisElement();
 

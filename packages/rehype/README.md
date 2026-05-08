@@ -1,13 +1,13 @@
-# gpt-vis-rehype
+# @gpt-vis-plugin/rehype
 
 > A rehype plugin that transforms `GPT-Vis` code blocks into `<gpt-vis>` Web Components.
 
-[![npm](https://img.shields.io/npm/v/gpt-vis-rehype)](https://www.npmjs.com/package/gpt-vis-rehype)
+[![npm](https://img.shields.io/npm/v/@gpt-vis-plugin/rehype)](https://www.npmjs.com/package/@gpt-vis-plugin/rehype)
 
 ## Installation
 
 ```bash
-pnpm add gpt-vis-rehype @antv/gpt-vis
+pnpm add @gpt-vis-plugin/rehype @antv/gpt-vis
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ pnpm add gpt-vis-rehype @antv/gpt-vis
 > **Note**: The plugin must run before syntax highlighters (e.g., `rehype-highlight`), otherwise the highlighter may alter code block structure and cause parsing failures.
 
 ````ts
-import { rehypeGPTVis, registerGPTVisElement } from 'gpt-vis-rehype';
+import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';

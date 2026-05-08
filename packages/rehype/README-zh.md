@@ -1,13 +1,13 @@
-# gpt-vis-rehype
+# @gpt-vis-plugin/rehype
 
 > 将 `GPT-Vis` 代码块转换为 `<gpt-vis>` Web Component 的 rehype 插件。
 
-[![npm](https://img.shields.io/npm/v/gpt-vis-rehype)](https://www.npmjs.com/package/gpt-vis-rehype)
+[![npm](https://img.shields.io/npm/v/@gpt-vis-plugin/rehype)](https://www.npmjs.com/package/@gpt-vis-plugin/rehype)
 
 ## 安装
 
 ```bash
-pnpm add gpt-vis-rehype @antv/gpt-vis
+pnpm add @gpt-vis-plugin/rehype @antv/gpt-vis
 ```
 
 ## 使用
@@ -15,7 +15,7 @@ pnpm add gpt-vis-rehype @antv/gpt-vis
 > **注意**：插件必须在语法高亮插件（如 `rehype-highlight`）之前运行，否则高亮器可能改变代码块结构导致解析失败。
 
 ````ts
-import { rehypeGPTVis, registerGPTVisElement } from 'gpt-vis-rehype';
+import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';

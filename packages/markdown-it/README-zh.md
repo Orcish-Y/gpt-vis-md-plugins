@@ -1,13 +1,13 @@
-# gpt-vis-markdown-it
+# @gpt-vis-plugin/markdown-it
 
 > 将 `GPT-Vis` 代码块转换为 `<gpt-vis>` Web Component 的 markdown-it 插件。
 
-[![npm](https://img.shields.io/npm/v/gpt-vis-markdown-it)](https://www.npmjs.com/package/gpt-vis-markdown-it)
+[![npm](https://img.shields.io/npm/v/@gpt-vis-plugin/markdown-it)](https://www.npmjs.com/package/@gpt-vis-plugin/markdown-it)
 
 ## 安装
 
 ```bash
-pnpm add gpt-vis-markdown-it @antv/gpt-vis markdown-it
+pnpm add @gpt-vis-plugin/markdown-it @antv/gpt-vis markdown-it
 ```
 
 ## 使用
@@ -16,7 +16,7 @@ pnpm add gpt-vis-markdown-it @antv/gpt-vis markdown-it
 
 ````ts
 import MarkdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin, registerGPTVisElement } from 'gpt-vis-markdown-it';
+import { gptVisMarkdownItPlugin, registerGPTVisElement } from '@gpt-vis-plugin/markdown-it';
 
 registerGPTVisElement();
 

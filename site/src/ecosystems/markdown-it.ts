@@ -1,5 +1,5 @@
 import markdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin } from 'gpt-vis-markdown-it';
+import { gptVisMarkdownItPlugin } from '@gpt-vis-plugin/markdown-it';
 import type { EcosystemAdapter } from './types';
 
 const md = markdownIt().use(gptVisMarkdownItPlugin, { wrapper: true });

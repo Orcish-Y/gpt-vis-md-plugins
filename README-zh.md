@@ -5,7 +5,7 @@
 > 为三大主流 Markdown 渲染生态提供的 GPT-Vis 可视化语法插件，让你在 Markdown 中直接编写图表代码并实时渲染。
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![npm](https://img.shields.io/npm/v/gpt-vis-rehype)](https://www.npmjs.com/package/gpt-vis-rehype)
+[![npm](https://img.shields.io/npm/v/@gpt-vis-plugin/rehype)](https://www.npmjs.com/package/@gpt-vis-plugin/rehype)
 [![Site](https://img.shields.io/badge/demo-gpt--vis.antv.vision-brightgreen)](https://gpt-vis.antv.vision)
 
 ## 简介
@@ -32,11 +32,11 @@ color #4A90D9 #6DBF66
 
 ## 包列表
 
-| 包名                                             | 生态             | 说明                                          |
-| ------------------------------------------------ | ---------------- | --------------------------------------------- |
-| [`gpt-vis-rehype`](./packages/rehype/)           | Unified / rehype | 适用于 unified 生态（react-markdown、MDX 等） |
-| [`gpt-vis-markdown-it`](./packages/markdown-it/) | markdown-it      | 适用于 markdown-it（Vitepress、VuePress 等）  |
-| [`gpt-vis-marked`](./packages/marked/)           | Marked           | 适用于 Marked（Hexo、GitBook 等）             |
+| 包名                                                     | 生态             | 说明                                          |
+| -------------------------------------------------------- | ---------------- | --------------------------------------------- |
+| [`@gpt-vis-plugin/rehype`](./packages/rehype/)           | Unified / rehype | 适用于 unified 生态（react-markdown、MDX 等） |
+| [`@gpt-vis-plugin/markdown-it`](./packages/markdown-it/) | markdown-it      | 适用于 markdown-it（Vitepress、VuePress 等）  |
+| [`@gpt-vis-plugin/marked`](./packages/marked/)           | Marked           | 适用于 Marked（Hexo、GitBook 等）             |
 
 ## 安装
 
@@ -51,13 +51,13 @@ color #4A90D9 #6DBF66
 
 ```bash
 # rehype (Unified 生态)
-pnpm add gpt-vis-rehype @antv/gpt-vis
+pnpm add @gpt-vis-plugin/rehype @antv/gpt-vis
 
 # markdown-it
-pnpm add gpt-vis-markdown-it @antv/gpt-vis markdown-it
+pnpm add @gpt-vis-plugin/markdown-it @antv/gpt-vis markdown-it
 
 # Marked
-pnpm add gpt-vis-marked @antv/gpt-vis marked
+pnpm add @gpt-vis-plugin/marked @antv/gpt-vis marked
 ```
 
 ## 使用
@@ -69,7 +69,7 @@ pnpm add gpt-vis-marked @antv/gpt-vis marked
 ### Unified / rehype
 
 ```ts
-import { rehypeGPTVis, registerGPTVisElement } from 'gpt-vis-rehype';
+import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -92,7 +92,7 @@ console.log(String(html));
 
 ```ts
 import MarkdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin, registerGPTVisElement } from 'gpt-vis-markdown-it';
+import { gptVisMarkdownItPlugin, registerGPTVisElement } from '@gpt-vis-plugin/markdown-it';
 
 registerGPTVisElement();
 
@@ -106,7 +106,7 @@ const html = md.render('# Hello\n\n\`\`\`GPT-Vis\nvis line\ndata ...\n\`\`\`');
 
 ```ts
 import { Marked } from 'marked';
-import { markedGPTVis, registerGPTVisElement } from 'gpt-vis-marked';
+import { markedGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/marked';
 
 registerGPTVisElement();
 
@@ -169,8 +169,8 @@ md.use(gptVisMarkdownItPlugin, {
 
 ```bash
 # 克隆仓库
-git clone https://github.com/antvis/gpt-vis-md-plugins.git
-cd gpt-vis-md-plugins
+git clone https://github.com/antvis/gpt-vis-plugins.git
+cd gpt-vis-plugins
 
 # 安装依赖
 pnpm install

@@ -5,7 +5,7 @@
 English | [中文](./README-zh.md)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![npm](https://img.shields.io/npm/v/gpt-vis-rehype)](https://www.npmjs.com/package/gpt-vis-rehype)
+[![npm](https://img.shields.io/npm/v/@gpt-vis-plugin/rehype)](https://www.npmjs.com/package/@gpt-vis-plugin/rehype)
 [![Site](https://img.shields.io/badge/demo-gpt--vis.antv.vision-brightgreen)](https://gpt-vis.antv.vision)
 
 ## Introduction
@@ -32,11 +32,11 @@ color #4A90D9 #6DBF66
 
 ## Packages
 
-| Package                                          | Ecosystem        | Description                                       |
-| ------------------------------------------------ | ---------------- | ------------------------------------------------- |
-| [`gpt-vis-rehype`](./packages/rehype/)           | Unified / rehype | For unified ecosystem (react-markdown, MDX, etc.) |
-| [`gpt-vis-markdown-it`](./packages/markdown-it/) | markdown-it      | For markdown-it (Vitepress, VuePress, etc.)       |
-| [`gpt-vis-marked`](./packages/marked/)           | Marked           | For Marked (Hexo, GitBook, etc.)                  |
+| Package                                                  | Ecosystem        | Description                                       |
+| -------------------------------------------------------- | ---------------- | ------------------------------------------------- |
+| [`@gpt-vis-plugin/rehype`](./packages/rehype/)           | Unified / rehype | For unified ecosystem (react-markdown, MDX, etc.) |
+| [`@gpt-vis-plugin/markdown-it`](./packages/markdown-it/) | markdown-it      | For markdown-it (Vitepress, VuePress, etc.)       |
+| [`@gpt-vis-plugin/marked`](./packages/marked/)           | Marked           | For Marked (Hexo, GitBook, etc.)                  |
 
 ## Installation
 
@@ -51,13 +51,13 @@ Choose the package that matches your Markdown renderer:
 
 ```bash
 # rehype (Unified ecosystem)
-pnpm add gpt-vis-rehype @antv/gpt-vis
+pnpm add @gpt-vis-plugin/rehype @antv/gpt-vis
 
 # markdown-it
-pnpm add gpt-vis-markdown-it @antv/gpt-vis markdown-it
+pnpm add @gpt-vis-plugin/markdown-it @antv/gpt-vis markdown-it
 
 # Marked
-pnpm add gpt-vis-marked @antv/gpt-vis marked
+pnpm add @gpt-vis-plugin/marked @antv/gpt-vis marked
 ```
 
 ## Usage
@@ -69,7 +69,7 @@ pnpm add gpt-vis-marked @antv/gpt-vis marked
 ### Unified / rehype
 
 ```ts
-import { rehypeGPTVis, registerGPTVisElement } from 'gpt-vis-rehype';
+import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -92,7 +92,7 @@ console.log(String(html));
 
 ```ts
 import MarkdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin, registerGPTVisElement } from 'gpt-vis-markdown-it';
+import { gptVisMarkdownItPlugin, registerGPTVisElement } from '@gpt-vis-plugin/markdown-it';
 
 registerGPTVisElement();
 
@@ -106,7 +106,7 @@ const html = md.render('# Hello\n\n\`\`\`GPT-Vis\nvis line\ndata ...\n\`\`\`');
 
 ```ts
 import { Marked } from 'marked';
-import { markedGPTVis, registerGPTVisElement } from 'gpt-vis-marked';
+import { markedGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/marked';
 
 registerGPTVisElement();
 
@@ -169,8 +169,8 @@ Each package exports the following public API:
 
 ```bash
 # Clone the repository
-git clone https://github.com/antvis/gpt-vis-md-plugins.git
-cd gpt-vis-md-plugins
+git clone https://github.com/antvis/gpt-vis-plugins.git
+cd gpt-vis-plugins
 
 # Install dependencies
 pnpm install

@@ -38,18 +38,18 @@ function render() {
 <h2 id="installation">Installation</h2>
 <p>Install the package for your Markdown ecosystem, along with the peer dependency <code>@antv/gpt-vis</code>:</p>
 ${pre(`# Unified / rehype
-npm install gpt-vis-rehype @antv/gpt-vis
+npm install @gpt-vis-plugin/rehype @antv/gpt-vis
 
 # markdown-it
-npm install gpt-vis-markdown-it @antv/gpt-vis markdown-it
+npm install @gpt-vis-plugin/markdown-it @antv/gpt-vis markdown-it
 
 # marked
-npm install gpt-vis-marked @antv/gpt-vis marked`)}
+npm install @gpt-vis-plugin/marked @antv/gpt-vis marked`)}
 
 <h2 id="quick-start">Quick Start</h2>
 <p>Regardless of which ecosystem you use, you must register the Web Component in the browser before rendering:</p>
-${pre(`import { registerGPTVisElement } from 'gpt-vis-rehype';
-// or from 'gpt-vis-markdown-it' / 'gpt-vis-marked'
+${pre(`import { registerGPTVisElement } from '@gpt-vis-plugin/rehype';
+// or from '@gpt-vis-plugin/markdown-it' / '@gpt-vis-plugin/marked'
 
 registerGPTVisElement();
 
@@ -58,7 +58,7 @@ registerGPTVisElement({ width: 800, height: 600, theme: 'light' });`)}
 
 <h2 id="ecosystem-unified">Unified / rehype</h2>
 <p>
-  The <code>gpt-vis-rehype</code> package provides a
+  The <code>@gpt-vis-plugin/rehype</code> package provides a
   <a href="https://github.com/rehypejs/rehype" target="_blank">rehype</a> plugin
   that transforms the hast AST. Use it in any unified pipeline.
 </p>
@@ -68,7 +68,7 @@ ${pre(`import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import rehypeGPTVis from 'gpt-vis-rehype';
+import rehypeGPTVis from '@gpt-vis-plugin/rehype';
 
 const html = await unified()
   .use(remarkParse)
@@ -80,7 +80,7 @@ const html = await unified()
 document.getElementById('preview').innerHTML = String(html);`)}
 
 <h3>Options</h3>
-${pre(`import rehypeGPTVis from 'gpt-vis-rehype';
+${pre(`import rehypeGPTVis from '@gpt-vis-plugin/rehype';
 
 unified()
   .use(rehypeGPTVis, {
@@ -90,14 +90,14 @@ unified()
 
 <h2 id="ecosystem-markdown-it">markdown-it</h2>
 <p>
-  The <code>gpt-vis-markdown-it</code> package provides a
+  The <code>@gpt-vis-plugin/markdown-it</code> package provides a
   <a href="https://github.com/markdown-it/markdown-it" target="_blank">markdown-it</a>
   plugin that overrides the fence renderer.
 </p>
 
 <h3>Basic Usage</h3>
 ${pre(`import MarkdownIt from 'markdown-it';
-import gptVisMarkdownItPlugin from 'gpt-vis-markdown-it';
+import gptVisMarkdownItPlugin from '@gpt-vis-plugin/markdown-it';
 
 const md = new MarkdownIt();
 md.use(gptVisMarkdownItPlugin); // register before syntax highlighters
@@ -117,14 +117,14 @@ ${pre(`md.use(gptVisMarkdownItPlugin, {
 
 <h2 id="ecosystem-marked">marked</h2>
 <p>
-  The <code>gpt-vis-marked</code> package provides a
+  The <code>@gpt-vis-plugin/marked</code> package provides a
   <a href="https://github.com/markedjs/marked" target="_blank">marked</a>
   extension.
 </p>
 
 <h3>Basic Usage</h3>
 ${pre(`import { marked } from 'marked';
-import markedGPTVis from 'gpt-vis-marked';
+import markedGPTVis from '@gpt-vis-plugin/marked';
 
 marked.use(markedGPTVis()); // register before syntax highlighters
 
@@ -183,7 +183,7 @@ ${pre(`marked.use(markedGPTVis({
 
 <h3 id="api-rehype">rehypeGPTVis(options?)</h3>
 <p>
-  The unified rehype plugin (default export of <code>gpt-vis-rehype</code>).
+  The unified rehype plugin (default export of <code>@gpt-vis-plugin/rehype</code>).
   Walks the hast tree and replaces <code>&lt;pre&gt;&lt;code class="language-gpt-vis"&gt;</code>
   nodes with <code>&lt;gpt-vis&gt;</code> elements.
 </p>
@@ -197,7 +197,7 @@ ${pre(`marked.use(markedGPTVis({
 
 <h3 id="api-markdown-it">gptVisMarkdownItPlugin(md, options?)</h3>
 <p>
-  The markdown-it plugin (default export of <code>gpt-vis-markdown-it</code>).
+  The markdown-it plugin (default export of <code>@gpt-vis-plugin/markdown-it</code>).
   Overrides <code>md.renderer.rules.fence</code> to intercept <code>gpt-vis</code> code blocks.
 </p>
 
@@ -211,7 +211,7 @@ ${pre(`marked.use(markedGPTVis({
 
 <h3 id="api-marked">markedGPTVis(options?)</h3>
 <p>
-  Factory function (default export of <code>gpt-vis-marked</code>).
+  Factory function (default export of <code>@gpt-vis-plugin/marked</code>).
   Returns a <code>MarkedExtension</code> object. Use with <code>marked.use()</code>.
 </p>
 

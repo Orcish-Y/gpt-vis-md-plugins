@@ -2,7 +2,7 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import { rehypeGPTVis } from 'gpt-vis-rehype';
+import { rehypeGPTVis } from '@gpt-vis-plugin/rehype';
 import type { EcosystemAdapter } from './types';
 
 const pipeline = unified()
