@@ -46,7 +46,7 @@ jobs:
       - run: pnpm build
 
       - name: Publish to npm
-        run: pnpm publish -r --filter './packages/*' --no-git-checks
+        run: pnpm publish -r --filter './packages/*' --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
