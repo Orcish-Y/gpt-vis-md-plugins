@@ -20,6 +20,12 @@ export interface RehypeGPTVisOptions {
    * @default false
    */
   wrapper?: boolean;
+
+  /**
+   * Any other keys are forwarded as data-* attributes on the <gpt-vis> element.
+   * CamelCase keys are converted to kebab-case (e.g. customParam → data-custom-param).
+   */
+  [key: string]: unknown;
 }
 
 function getTextContent(node: Element): string {
@@ -37,7 +43,15 @@ export function isVisSyntax(text: string): boolean {
 }
 
 export const rehypeGPTVis: Plugin<[RehypeGPTVisOptions?], Root> = (options = {}) => {
-  const { tagName = 'gpt-vis', keepOriginal = false, wrapper } = options;
+  const { tagName = 'gpt-vis', keepOriginal = false, wrapper, ...restAttrs } = options;
+
+  const userAttrs: Record<string, string | number | boolean> = { ...restAttrs } as Record<
+    string,
+    string | number | boolean
+  >;
+  if (wrapper !== undefined && !('wrapper' in userAttrs)) {
+    userAttrs.wrapper = wrapper;
+  }
 
   return (tree) => {
     visit(tree, 'element', (node, index, parent) => {
@@ -63,8 +77,9 @@ export const rehypeGPTVis: Plugin<[RehypeGPTVisOptions?], Root> = (options = {})
       const properties: Properties = {
         'data-gpt-vis': syntax,
       };
-      if (wrapper) {
-        properties['data-wrapper'] = 'true';
+      for (const [key, value] of Object.entries(userAttrs)) {
+        const kebabKey = key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+        properties[`data-${kebabKey}`] = String(value);
       }
 
       const container: Element = {

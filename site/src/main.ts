@@ -1,4 +1,3 @@
-import { registerGPTVisElement } from '@gpt-vis-plugin/rehype';
 import { defaultMarkdown } from './default-markdown';
 import { ecosystemRegistry } from './ecosystems/registry';
 import { rehypeAdapter } from './ecosystems/rehype';
@@ -6,7 +5,7 @@ import { markdownItAdapter } from './ecosystems/markdown-it';
 import { markedAdapter } from './ecosystems/marked';
 import type { EcosystemAdapter } from './ecosystems/types';
 
-registerGPTVisElement();
+// The <gpt-vis> Web Component is auto-registered when any plugin package is imported
 
 ecosystemRegistry.register(rehypeAdapter);
 ecosystemRegistry.register(markdownItAdapter);

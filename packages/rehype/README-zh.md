@@ -15,13 +15,11 @@ pnpm add @gpt-vis-plugin/rehype @antv/gpt-vis
 > **注意**：插件必须在语法高亮插件（如 `rehype-highlight`）之前运行，否则高亮器可能改变代码块结构导致解析失败。
 
 ````ts
-import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
+import { rehypeGPTVis } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-
-registerGPTVisElement();
 
 const html = await unified()
   .use(remarkParse)
@@ -57,12 +55,11 @@ console.log(String(html));
 
 ## API
 
-| 导出                              | 描述                                |
-| --------------------------------- | ----------------------------------- |
-| `rehypeGPTVis`（默认导出）        | Rehype 插件函数                     |
-| `isVisSyntax(text)`               | 检查字符串是否为有效的 GPT-Vis 语法 |
-| `registerGPTVisElement(options?)` | 注册 `<gpt-vis>` Web Component      |
-| `GPTVisDefaultOptions`            | 插件配置项类型                      |
+| 导出                       | 描述                                             |
+| -------------------------- | ------------------------------------------------ |
+| `rehypeGPTVis`（默认导出） | Rehype 插件函数                                  |
+| `isVisSyntax(text)`        | 检查字符串是否为有效的 GPT-Vis 语法              |
+| `registerGPTVisElement()`  | 注册 `<gpt-vis>` Web Component（导入时自动调用） |
 
 ## License
 

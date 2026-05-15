@@ -18,6 +18,12 @@ export interface MarkedGPTVisOptions {
    * @default false
    */
   wrapper?: boolean;
+
+  /**
+   * Any other keys are forwarded as data-* attributes on the <gpt-vis> element.
+   * CamelCase keys are converted to kebab-case (e.g. customParam → data-custom-param).
+   */
+  [key: string]: unknown;
 }
 
 function escapeHtml(str: string): string {
@@ -33,7 +39,22 @@ export function isVisSyntax(text: string): boolean {
 }
 
 export function markedGPTVis(options: MarkedGPTVisOptions = {}): MarkedExtension {
-  const { tagName = 'gpt-vis', keepOriginal = false, wrapper } = options;
+  const { tagName = 'gpt-vis', keepOriginal = false, wrapper, ...restAttrs } = options;
+
+  const userAttrs: Record<string, string | number | boolean> = { ...restAttrs } as Record<
+    string,
+    string | number | boolean
+  >;
+  if (wrapper !== undefined && !('wrapper' in userAttrs)) {
+    userAttrs.wrapper = wrapper;
+  }
+
+  const visAttrs = Object.entries(userAttrs)
+    .map(([k, v]) => {
+      const attrName = 'data-' + k.replace(/[A-Z]/g, (l) => '-' + l.toLowerCase());
+      return ` ${attrName}="${escapeHtml(String(v))}"`;
+    })
+    .join('');
 
   return {
     renderer: {
@@ -48,8 +69,7 @@ export function markedGPTVis(options: MarkedGPTVisOptions = {}): MarkedExtension
         }
 
         const escaped = escapeHtml(syntax);
-        const wrapperAttr = wrapper ? ' data-wrapper="true"' : '';
-        const visHtml = `<${tagName} data-gpt-vis="${escaped}"${wrapperAttr}></${tagName}>`;
+        const visHtml = `<${tagName} data-gpt-vis="${escaped}"${visAttrs}></${tagName}>`;
 
         if (keepOriginal) {
           const originalHtml = `<pre><code class="language-${escapeHtml(lang)}">${escapeHtml(text)}</code></pre>`;

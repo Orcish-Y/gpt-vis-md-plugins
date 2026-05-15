@@ -62,21 +62,18 @@ pnpm add @gpt-vis-plugin/marked @antv/gpt-vis marked
 
 ## Usage
 
-> **Note**: All plugins require the `<gpt-vis>` custom element to be registered in a browser environment. Make sure to call `registerGPTVisElement()` before use.
+> **Note**: The `<gpt-vis>` Web Component is automatically registered when you import any plugin package in a browser environment. You can still call `registerGPTVisElement()` manually if needed, but it is no longer required.
 >
 > **Note**: The GPT-Vis plugin must run before any syntax highlighting plugin. For example in Unified, `rehypeGPTVis` should come before `rehype-highlight`, otherwise the highlighter may alter the code block structure and cause parsing failures.
 
 ### Unified / rehype
 
 ```ts
-import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
+import { rehypeGPTVis } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-
-// Register the Web Component (call once)
-registerGPTVisElement();
 
 const html = await unified()
   .use(remarkParse) // Markdown → mdast
@@ -92,9 +89,7 @@ console.log(String(html));
 
 ```ts
 import MarkdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin, registerGPTVisElement } from '@gpt-vis-plugin/markdown-it';
-
-registerGPTVisElement();
+import { gptVisMarkdownItPlugin } from '@gpt-vis-plugin/markdown-it';
 
 const md = new MarkdownIt();
 md.use(gptVisMarkdownItPlugin);
@@ -106,9 +101,7 @@ const html = md.render('# Hello\n\n\`\`\`GPT-Vis\nvis line\ndata ...\n\`\`\`');
 
 ```ts
 import { Marked } from 'marked';
-import { markedGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/marked';
-
-registerGPTVisElement();
+import { markedGPTVis } from '@gpt-vis-plugin/marked';
 
 const marked = new Marked();
 marked.use(markedGPTVis());
@@ -158,12 +151,11 @@ Rendered HTML elements also support overriding defaults via `data-*` attributes:
 
 Each package exports the following public API:
 
-| Export                            | Description                               |
-| --------------------------------- | ----------------------------------------- |
-| Default export                    | Plugin/extension main function            |
-| `isVisSyntax(text)`               | Check if a string is valid GPT-Vis syntax |
-| `registerGPTVisElement(options?)` | Register the `<gpt-vis>` Web Component    |
-| `GPTVisDefaultOptions`            | Default options interface type            |
+| Export                    | Description                                                    |
+| ------------------------- | -------------------------------------------------------------- |
+| Default export            | Plugin/extension main function                                 |
+| `isVisSyntax(text)`       | Check if a string is valid GPT-Vis syntax                      |
+| `registerGPTVisElement()` | Register the `<gpt-vis>` Web Component (auto-called on import) |
 
 ## Development
 
