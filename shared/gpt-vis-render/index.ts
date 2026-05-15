@@ -1,14 +1,12 @@
 // @ts-ignore
 import { GPTVis, isVisSyntax } from '@antv/gpt-vis';
 
-export interface GPTVisDefaultOptions {
-  width?: number;
-  height?: number;
-  theme?: 'default' | 'light' | 'dark' | 'academy';
-  wrapper?: boolean;
+function parseDatasetValue(value: string): string | number | boolean {
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  if (/^-?\d+(\.\d+)?$/.test(value)) return Number(value);
+  return value;
 }
-
-let defaultOptions: GPTVisDefaultOptions = {};
 
 class GPTVisElement extends HTMLElement {
   private _instance: GPTVis | null = null;
@@ -17,24 +15,13 @@ class GPTVisElement extends HTMLElement {
     const syntax = this.dataset.gptVis;
     if (!syntax) return;
 
-    const width = this.dataset.width ? Number(this.dataset.width) : defaultOptions.width;
-    const height = this.dataset.height ? Number(this.dataset.height) : defaultOptions.height;
-    const theme = (this.dataset.theme || defaultOptions.theme) as
-      | 'default'
-      | 'light'
-      | 'dark'
-      | 'academy'
-      | undefined;
-    const wrapper =
-      this.dataset.wrapper !== undefined ? this.dataset.wrapper === 'true' : defaultOptions.wrapper;
+    const attrs: Record<string, string | number | boolean> = {};
+    for (const [key, value] of Object.entries(this.dataset)) {
+      if (key === 'gptVis' || value === undefined) continue;
+      attrs[key] = parseDatasetValue(value);
+    }
 
-    this._instance = new GPTVis({
-      container: this,
-      width,
-      height,
-      theme,
-      wrapper,
-    });
+    this._instance = new GPTVis({ container: this, ...attrs });
 
     if (isVisSyntax(syntax)) {
       this._instance.render(syntax);
@@ -47,7 +34,7 @@ class GPTVisElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['data-gpt-vis', 'data-width', 'data-height', 'data-theme', 'data-wrapper'];
+    return ['data-gpt-vis'];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -58,9 +45,12 @@ class GPTVisElement extends HTMLElement {
   }
 }
 
-export function registerGPTVisElement(options: GPTVisDefaultOptions = {}) {
-  defaultOptions = options;
+export function registerGPTVisElement() {
   if (!customElements.get('gpt-vis')) {
     customElements.define('gpt-vis', GPTVisElement);
   }
+}
+
+if (typeof customElements !== 'undefined') {
+  registerGPTVisElement();
 }

@@ -16,9 +16,7 @@ pnpm add @gpt-vis-plugin/marked @antv/gpt-vis marked
 
 ````ts
 import { Marked } from 'marked';
-import { markedGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/marked';
-
-registerGPTVisElement();
+import { markedGPTVis } from '@gpt-vis-plugin/marked';
 
 const marked = new Marked();
 marked.use(markedGPTVis());
@@ -52,12 +50,11 @@ marked.use(
 
 ## API
 
-| export                            | 描述                                           |
-| --------------------------------- | ---------------------------------------------- |
-| `markedGPTVis`（默认导出）        | Marked 扩展工厂函数（`() => MarkedExtension`） |
-| `isVisSyntax(text)`               | 检查字符串是否为有效的 GPT-Vis 语法            |
-| `registerGPTVisElement(options?)` | 注册 `<gpt-vis>` Web Component                 |
-| `GPTVisDefaultOptions`            | 插件配置项类型                                 |
+| export                     | 描述                                             |
+| -------------------------- | ------------------------------------------------ |
+| `markedGPTVis`（默认导出） | Marked 扩展工厂函数（`() => MarkedExtension`）   |
+| `isVisSyntax(text)`        | 检查字符串是否为有效的 GPT-Vis 语法              |
+| `registerGPTVisElement()`  | 注册 `<gpt-vis>` Web Component（导入时自动调用） |
 
 ## License
 

@@ -15,13 +15,11 @@ pnpm add @gpt-vis-plugin/rehype @antv/gpt-vis
 > **Note**: The plugin must run before syntax highlighters (e.g., `rehype-highlight`), otherwise the highlighter may alter code block structure and cause parsing failures.
 
 ````ts
-import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
+import { rehypeGPTVis } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-
-registerGPTVisElement();
 
 const html = await unified()
   .use(remarkParse)
@@ -57,12 +55,11 @@ console.log(String(html));
 
 ## API
 
-| Export                            | Description                               |
-| --------------------------------- | ----------------------------------------- |
-| `rehypeGPTVis` (default)          | Rehype plugin function                    |
-| `isVisSyntax(text)`               | Check if a string is valid GPT-Vis syntax |
-| `registerGPTVisElement(options?)` | Register the `<gpt-vis>` Web Component    |
-| `GPTVisDefaultOptions`            | Plugin options type                       |
+| Export                    | Description                                                    |
+| ------------------------- | -------------------------------------------------------------- |
+| `rehypeGPTVis` (default)  | Rehype plugin function                                         |
+| `isVisSyntax(text)`       | Check if a string is valid GPT-Vis syntax                      |
+| `registerGPTVisElement()` | Register the `<gpt-vis>` Web Component (auto-called on import) |
 
 ## License
 

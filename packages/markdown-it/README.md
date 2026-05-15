@@ -16,9 +16,7 @@ pnpm add @gpt-vis-plugin/markdown-it @antv/gpt-vis markdown-it
 
 ````ts
 import MarkdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin, registerGPTVisElement } from '@gpt-vis-plugin/markdown-it';
-
-registerGPTVisElement();
+import { gptVisMarkdownItPlugin } from '@gpt-vis-plugin/markdown-it';
 
 const md = new MarkdownIt();
 md.use(gptVisMarkdownItPlugin);
@@ -50,12 +48,11 @@ md.use(gptVisMarkdownItPlugin, {
 
 ## API
 
-| Export                             | Description                               |
-| ---------------------------------- | ----------------------------------------- |
-| `gptVisMarkdownItPlugin` (default) | markdown-it plugin function               |
-| `isVisSyntax(text)`                | Check if a string is valid GPT-Vis syntax |
-| `registerGPTVisElement(options?)`  | Register the `<gpt-vis>` Web Component    |
-| `GPTVisDefaultOptions`             | Plugin options type                       |
+| Export                             | Description                                                    |
+| ---------------------------------- | -------------------------------------------------------------- |
+| `gptVisMarkdownItPlugin` (default) | markdown-it plugin function                                    |
+| `isVisSyntax(text)`                | Check if a string is valid GPT-Vis syntax                      |
+| `registerGPTVisElement()`          | Register the `<gpt-vis>` Web Component (auto-called on import) |
 
 ## License
 

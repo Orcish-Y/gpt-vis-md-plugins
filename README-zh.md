@@ -62,21 +62,18 @@ pnpm add @gpt-vis-plugin/marked @antv/gpt-vis marked
 
 ## 使用
 
-> **注意**：所有插件都需要在浏览器环境中注册 `<gpt-vis>` 自定义元素。请确保在使用前调用 `registerGPTVisElement()`。
+> **注意**：`<gpt-vis>` Web Component 会在浏览器环境中导入插件包时自动注册，无需手动调用 `registerGPTVisElement()`。如有需要，仍然可以手动调用。
 >
 > **注意**：GPT-Vis 插件需要在代码高亮插件之前执行。例如在 Unified 中，`rehypeGPTVis` 应排在 `rehype-highlight` 之前，否则高亮插件可能改变代码块结构导致解析失败。
 
 ### Unified / rehype
 
 ```ts
-import { rehypeGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/rehype';
+import { rehypeGPTVis } from '@gpt-vis-plugin/rehype';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-
-// 注册 Web Component（只需调用一次）
-registerGPTVisElement();
 
 const html = await unified()
   .use(remarkParse) // Markdown → mdast
@@ -92,9 +89,7 @@ console.log(String(html));
 
 ```ts
 import MarkdownIt from 'markdown-it';
-import { gptVisMarkdownItPlugin, registerGPTVisElement } from '@gpt-vis-plugin/markdown-it';
-
-registerGPTVisElement();
+import { gptVisMarkdownItPlugin } from '@gpt-vis-plugin/markdown-it';
 
 const md = new MarkdownIt();
 md.use(gptVisMarkdownItPlugin);
@@ -106,9 +101,7 @@ const html = md.render('# Hello\n\n\`\`\`GPT-Vis\nvis line\ndata ...\n\`\`\`');
 
 ```ts
 import { Marked } from 'marked';
-import { markedGPTVis, registerGPTVisElement } from '@gpt-vis-plugin/marked';
-
-registerGPTVisElement();
+import { markedGPTVis } from '@gpt-vis-plugin/marked';
 
 const marked = new Marked();
 marked.use(markedGPTVis());
@@ -158,12 +151,11 @@ md.use(gptVisMarkdownItPlugin, {
 
 每个包均导出以下公共 API：
 
-| 导出                              | 说明                                |
-| --------------------------------- | ----------------------------------- |
-| 默认导出                          | 插件/扩展主函数                     |
-| `isVisSyntax(text)`               | 判断字符串是否为有效的 GPT-Vis 语法 |
-| `registerGPTVisElement(options?)` | 注册 `<gpt-vis>` Web Component      |
-| `GPTVisDefaultOptions`            | 默认选项接口类型                    |
+| 导出                      | 说明                                             |
+| ------------------------- | ------------------------------------------------ |
+| 默认导出                  | 插件/扩展主函数                                  |
+| `isVisSyntax(text)`       | 判断字符串是否为有效的 GPT-Vis 语法              |
+| `registerGPTVisElement()` | 注册 `<gpt-vis>` Web Component（导入时自动调用） |
 
 ## 本地开发
 

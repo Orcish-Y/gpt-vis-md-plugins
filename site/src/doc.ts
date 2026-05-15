@@ -47,14 +47,10 @@ npm install @gpt-vis-plugin/markdown-it @antv/gpt-vis markdown-it
 npm install @gpt-vis-plugin/marked @antv/gpt-vis marked`)}
 
 <h2 id="quick-start">Quick Start</h2>
-<p>Regardless of which ecosystem you use, you must register the Web Component in the browser before rendering:</p>
-${pre(`import { registerGPTVisElement } from '@gpt-vis-plugin/rehype';
-// or from '@gpt-vis-plugin/markdown-it' / '@gpt-vis-plugin/marked'
-
-registerGPTVisElement();
-
-// Optional: pass global defaults
-registerGPTVisElement({ width: 800, height: 600, theme: 'light' });`)}
+<p>
+  The <code>&lt;gpt-vis&gt;</code> Web Component is automatically registered when you import any plugin package
+  in a browser environment. No manual call to <code>registerGPTVisElement()</code> is needed.
+</p>
 
 <h2 id="ecosystem-unified">Unified / rehype</h2>
 <p>
@@ -143,21 +139,15 @@ ${pre(`marked.use(markedGPTVis({
 
 <h2>API Reference</h2>
 
-<h3 id="api-register">registerGPTVisElement(options?)</h3>
+<h3 id="api-register">registerGPTVisElement()</h3>
 <p>
   Registers the <code>&lt;gpt-vis&gt;</code> custom element.
-  Must be called once in the browser before any rendering.
+  This is called automatically when the module is loaded in a browser environment,
+  so you typically don't need to call it manually.
+  Takes no parameters.
   Exported by all three packages.
 </p>
 
-<table>
-  <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
-  <tr>
-    <td>options</td>
-    <td><code>GPTVisDefaultOptions</code></td>
-    <td>Global default width, height, and theme for all chart instances ${tag('optional', false)}</td>
-  </tr>
-</table>
 
 <h3 id="api-isvis">isVisSyntax(text)</h3>
 <p>
@@ -169,16 +159,6 @@ ${pre(`marked.use(markedGPTVis({
 <table>
   <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
   <tr><td>text</td><td><code>string</code></td><td>The raw content to validate ${tag('required', true)}</td></tr>
-</table>
-
-<h3 id="api-defaults">GPTVisDefaultOptions</h3>
-<p>Options passed to <code>registerGPTVisElement()</code>. Exported by all three packages.</p>
-
-<table>
-  <tr><th>Property</th><th>Type</th><th>Default</th><th>Description</th></tr>
-  <tr><td>width</td><td><code>number</code></td><td>—</td><td>Chart width in pixels ${tag('optional', false)}</td></tr>
-  <tr><td>height</td><td><code>number</code></td><td>—</td><td>Chart height in pixels ${tag('optional', false)}</td></tr>
-  <tr><td>theme</td><td><code>'default' | 'light' | 'dark' | 'academy'</code></td><td>—</td><td>Visual theme ${tag('optional', false)}</td></tr>
 </table>
 
 <h3 id="api-rehype">rehypeGPTVis(options?)</h3>

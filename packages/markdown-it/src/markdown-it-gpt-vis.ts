@@ -18,6 +18,12 @@ export interface MarkdownItGPTVisOptions {
    * @default false
    */
   wrapper?: boolean;
+
+  /**
+   * Any other keys are forwarded as data-* attributes on the <gpt-vis> element.
+   * CamelCase keys are converted to kebab-case (e.g. customParam → data-custom-param).
+   */
+  [key: string]: unknown;
 }
 
 export function isVisSyntax(text: string): boolean {
@@ -28,7 +34,15 @@ export function gptVisMarkdownItPlugin(
   md: MarkdownIt,
   options: MarkdownItGPTVisOptions = {},
 ): void {
-  const { tagName = 'gpt-vis', keepOriginal = false, wrapper } = options;
+  const { tagName = 'gpt-vis', keepOriginal = false, wrapper, ...restAttrs } = options;
+
+  const userAttrs: Record<string, string | number | boolean> = { ...restAttrs } as Record<
+    string,
+    string | number | boolean
+  >;
+  if (wrapper !== undefined && !('wrapper' in userAttrs)) {
+    userAttrs.wrapper = wrapper;
+  }
 
   const defaultFence = md.renderer.rules.fence!;
 
@@ -45,9 +59,15 @@ export function gptVisMarkdownItPlugin(
       return defaultFence(tokens, idx, mdOptions, env, self);
     }
 
+    const visAttrs = Object.entries(userAttrs)
+      .map(([k, v]) => {
+        const attrName = 'data-' + k.replace(/[A-Z]/g, (l) => '-' + l.toLowerCase());
+        return ` ${attrName}="${md.utils.escapeHtml(String(v))}"`;
+      })
+      .join('');
+
     const attr = md.utils.escapeHtml(syntax);
-    const wrapperAttr = wrapper ? ' data-wrapper="true"' : '';
-    const visHtml = `<${tagName} data-gpt-vis="${attr}"${wrapperAttr}></${tagName}>`;
+    const visHtml = `<${tagName} data-gpt-vis="${attr}"${visAttrs}></${tagName}>`;
 
     if (keepOriginal) {
       const originalHtml = defaultFence(tokens, idx, mdOptions, env, self);
